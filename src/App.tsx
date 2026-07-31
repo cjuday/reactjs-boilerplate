@@ -1,9 +1,13 @@
+import { RouterProvider } from 'react-router-dom';
+import { router } from '@/app/routes/router';
+import { Toaster } from 'sonner';
+
 export default function App() {
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600">
-        NestJS React Boilerplate
-      </h1>
-    </div>
-  );
+  return(
+    <>
+      <RouterProvider router={router} />
+      <Toaster richColors position="top-center" />
+    </>
+  )
+  
 }

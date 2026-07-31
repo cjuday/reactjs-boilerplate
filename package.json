@@ -10,18 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.5.7",
+    "@reduxjs/toolkit": "^2.12.0",
     "@tailwindcss/vite": "^4.3.3",
-    "lucide-react": "link:/lucide-react",
+    "async-mutex": "^0.5.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.27.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-hook-form": "link:/react-hook-form",
-    "react-redux": "link:/react-redux",
-    "react-router-dom": "link:/react-router-dom",
-    "resolvers": "link:/@hookform/resolvers",
-    "sonner": "link:/sonner",
+    "react-hook-form": "^7.83.0",
+    "react-redux": "^9.3.0",
+    "react-router-dom": "^7.18.2",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
-    "toolkit": "link:/@reduxjs/toolkit",
-    "zod": "link:/zod"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -35,6 +38,7 @@
     "globals": "^17.7.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.62.0",
-    "vite": "^8.1.1"
+    "vite": "^8.1.1",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }
