@@ -12,7 +12,7 @@ export default function AuthBootstrap({ children }: PropsWithChildren) {
         const bootstrap = async () => {
             try {
                 const response = await dispatch(authApi.endpoints.refresh.initiate()).unwrap();
-                dispatch(setCredentials(response.accessToken));
+                dispatch(setCredentials(response));
             } catch {
                 dispatch(clearCredentials());
             } finally {

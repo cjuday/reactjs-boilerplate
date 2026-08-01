@@ -28,9 +28,9 @@ export function baseQueryWithReauth( options: Parameters<typeof fetchBaseQuery>[
                 );
 
                 if (refreshResult.data) {
-                    const { accessToken } = refreshResult.data as AuthResponse;
+                    const response = refreshResult.data as AuthResponse;
 
-                    api.dispatch(setCredentials(accessToken));
+                    api.dispatch(setCredentials(response));
 
                     result = await rawBaseQuery(args, api, extraOptions);
                 } else {

@@ -17,7 +17,7 @@ export function useLogin() {
       rememberMe,
     }).unwrap();
 
-    dispatch(setCredentials(response.accessToken));
+    dispatch(setCredentials(response));
 
     return response;
   };

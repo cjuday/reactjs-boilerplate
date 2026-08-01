@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import AuthPageFooter from '@/components/layouts/AuthPageFooter';
+import AppFooter from '@/components/layouts/AppFooter';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -12,7 +12,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                 {children}
             </div>
             
-            <AuthPageFooter />
+            <AppFooter />
         </main>
     );
 }

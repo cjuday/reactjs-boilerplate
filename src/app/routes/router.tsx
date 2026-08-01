@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { GuestGuard, RequireAuth } from './index';
-
-import LoginPage from '@/features/auth/pages/Login';
-import DashboardPage from '@/pages/DashboardPage';
+import AppLayout from '@/layouts/AppLayout';
+import Login from '@/features/auth/pages/Login';
+import Dashboard from '@/pages/Dashboard';
 
 export const router = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <LoginPage />,
+        element: <Login />,
       },
     ],
   },
@@ -18,8 +18,13 @@ export const router = createBrowserRouter([
     element: <RequireAuth />,
     children: [
       {
-        path: '/dashboard',
-        element: <DashboardPage />,
+        element: <AppLayout />,
+        children: [
+          {
+            path: '/dashboard',
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
   },
