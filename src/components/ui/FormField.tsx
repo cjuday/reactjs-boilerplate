@@ -11,17 +11,18 @@ interface FormFieldProps {
     type?: 'text' | 'email' | 'password' | 'number';
     placeholder?: string;
     autoComplete?: string;
-  disabled?: boolean;
+    disabled?: boolean;
+    required?: boolean;
 }
 
-export default function FormField({ id, label, registration, error, type = 'text', placeholder, autoComplete, disabled = false }: FormFieldProps) {
+export default function FormField({ id, label, registration, error, type = 'text', placeholder, autoComplete, disabled = false, required = false }: FormFieldProps) {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === 'password';
 
     return (
         <div className="space-y-2">
             <label htmlFor={id} className="block text-sm font-medium text-gray-900">
-                {label}
+                {label}{' '}{required && (<span className="ml-1 text-red-500">*</span>)} 
             </label>
 
             <Input

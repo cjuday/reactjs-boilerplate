@@ -1,6 +1,7 @@
 export interface User {
-    id: string;
-    email: string;
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  isEmailVerified: boolean;
 }

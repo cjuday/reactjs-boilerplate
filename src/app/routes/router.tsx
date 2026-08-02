@@ -3,6 +3,7 @@ import { GuestGuard, RequireAuth } from './index';
 import AppLayout from '@/layouts/AppLayout';
 import Login from '@/features/auth/pages/Login';
 import Dashboard from '@/pages/Dashboard';
+import RegisterPage from '@/features/auth/pages/Register';
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Login />,
       },
+      {
+        path: '/register',
+        element: <RegisterPage />,
+      }
     ],
   },
   {
