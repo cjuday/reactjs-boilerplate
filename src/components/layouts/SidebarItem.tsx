@@ -8,20 +8,20 @@ interface Props {
     to: string;
     icon: LucideIcon;
     children: ReactNode;
+    collapsed?: boolean;
     onClick?: () => void;
 }
 
-export default function SidebarItem({to, icon: Icon, children, onClick }: Props) {
+export default function SidebarItem({to, icon: Icon, children, collapsed = false, onClick }: Props) {
     return (
         <NavLink
+            title={collapsed ? String(children) : undefined}
             to={to}
             onClick={onClick}
             className={({ isActive }) =>
-                cn(
-                'group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
-                isActive
-                    ? 'bg-blue-100 text-blue-700'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+               cn('group flex rounded-lg py-2 text-sm font-medium transition-all duration-200',
+                    collapsed ? 'justify-center px-2' : 'items-center gap-3 px-4',
+                    isActive ? 'border-l-4 border-blue-600 bg-blue-50 text-blue-700' : 'border-l-4 border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900',
                 )
             }
         >
@@ -36,7 +36,11 @@ export default function SidebarItem({to, icon: Icon, children, onClick }: Props)
                         : 'text-slate-500 group-hover:text-slate-700',
                     )}
                 />
-                    <span>{children}</span>
+                    {!collapsed && (
+                        <span className="truncate">
+                            {children}
+                        </span>
+                    )}
                 </>
             )}
         </NavLink>

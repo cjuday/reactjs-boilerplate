@@ -1,13 +1,14 @@
-import { LayoutDashboard, Settings, Users, X } from 'lucide-react';
-import Logo from './Logo';
+import { LayoutDashboard, Settings, Users, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import SidebarItem from './SidebarItem';
 
 interface SidebarProps {
     open: boolean;
+    collapsed: boolean;
     onClose: () => void;
+    onCollapse: () => void;
 }
 
-export default function Sidebar({ open, onClose }: SidebarProps) {
+export default function Sidebar({ open, collapsed, onClose, onCollapse }: SidebarProps) {
     return (
         <>
             {/* Mobile backdrop */}
@@ -20,31 +21,49 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
             <aside
                 className={`
+                    h-full bg-white shadow-sm transition-all duration-300
                     fixed inset-y-0 left-0 z-50
-                    flex w-60 flex-col
-                    bg-white shadow-sm
-                    transition-transform duration-300 ease-in-out
-
                     ${open ? 'translate-x-0' : '-translate-x-full'}
-
-                    lg:static
-                    lg:translate-x-0
-                    lg:shadow-sm
+                    lg:relative lg:inset-auto lg:translate-x-0
+                    ${collapsed ? 'lg:w-20' : 'lg:w-60'}
+                    w-60
+                    flex flex-col
                 `}
             >
+                <button
+                    type="button"
+                    onClick={onCollapse}
+                    className="absolute -right-4 top-24 z-50 hidden h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-md transition-all duration-200 hover:scale-110 hover:bg-slate-50 active:scale-95 lg:flex"
+                    // className="absolute -right-4 top-1/2 z-50 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white shadow-md transition-all duration-200 hover:scale-110 hover:bg-slate-50 active:scale-95 lg:flex"
+                >
+                    {collapsed ? (
+                        <ChevronRight size={16} />
+                    ) : (
+                        <ChevronLeft size={16} />
+                    )}
+                </button>
                 {/* Header */}
-                <div className="flex h-16 items-center justify-center bg-white shadow-sm">
-                    <Logo />
-
-                    <button type="button" onClick={onClose} className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 lg:hidden">
-                        <X size={20} />
-                    </button>
-                </div>
+                {open && (
+                    <div className="flex justify-end border-b p-2 lg:hidden">
+                        <button
+                            onClick={onClose}
+                            className="rounded-md p-2 hover:bg-slate-100"
+                        >
+                            <X size={20} />
+                        </button>
+                    </div>
+                )}
                 {/* Navigation */}
                 <nav className="flex-1 space-y-2 p-4" onClick={() => { if (window.innerWidth < 1024) { onClose(); }}}>
-                    <SidebarItem to="/dashboard" icon={LayoutDashboard}>Dashboard</SidebarItem>
-                    <SidebarItem to="/users" icon={Users}>Users</SidebarItem>
-                    <SidebarItem to="/settings" icon={Settings}>Settings</SidebarItem>
+                    <SidebarItem to="/dashboard" icon={LayoutDashboard} collapsed={collapsed}>
+                        Dashboard
+                    </SidebarItem>
+                    <SidebarItem to="/users" icon={Users} collapsed={collapsed}>
+                        Users
+                    </SidebarItem>
+                    <SidebarItem to="/settings" icon={Settings} collapsed={collapsed}>
+                        Settings
+                    </SidebarItem>
                 </nav>
             </aside>
         </>
