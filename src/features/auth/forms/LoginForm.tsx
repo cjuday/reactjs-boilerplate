@@ -1,4 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
@@ -9,6 +10,28 @@ import { loginSchema, type LoginFormValues } from '../schemas/login.schema';
 
 export default function LoginForm() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const hasShownSuccessMessage = useRef(false);
+
+    useEffect(() => {
+        const message = location.state?.successMessage;
+
+        if (!message || hasShownSuccessMessage.current) {
+            return;
+        }
+
+        hasShownSuccessMessage.current = true;
+
+        if (message) {
+            toast.success(message);
+
+            navigate(location.pathname, {
+                replace: true,
+                state: null,
+            });
+        }
+    }, [location, navigate]);
+
     const { signIn, isLoading } = useLogin();
     const { register, handleSubmit, formState: { errors }} = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),

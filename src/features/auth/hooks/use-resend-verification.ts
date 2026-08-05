@@ -4,7 +4,7 @@ export function useResendVerification() {
     const [resend, { isLoading }] = useResendVerificationEmailMutation();
 
     const resendEmail = async () => {
-        await resend().unwrap();
+        return await resend().unwrap();
     };
 
     return { resendEmail, isLoading };

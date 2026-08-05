@@ -1,32 +1,27 @@
 import { Mail } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { Modal } from '@/components/ui/Modal';
+import { formatCountdown } from '@/shared/utils/formatCountdown';
 
 interface VerifyEmailModalProps {
   open: boolean;
   email: string;
-  onLogout: () => void;
   onResend: () => void;
+  onClose: () => void;
   countdown: number;
   isResending?: boolean;
 }
 
-export default function VerifyEmailModal({
-  open,
-  email,
-  onLogout,
-  onResend,
-  countdown,
-  isResending = false,
-}: VerifyEmailModalProps) {
+export default function VerifyEmailModal({ open, email, onResend, onClose, countdown, isResending = false }: VerifyEmailModalProps) {
   return (
     <Modal
       open={open}
+      onClose={onClose}
       title="Verify your email"
       size="md"
-      showCloseButton={false}
-      closeOnEsc={false}
-      closeOnOutsideClick={false}
+      showCloseButton
+      closeOnEsc
+      closeOnOutsideClick
     >
       <div className="flex flex-col items-center text-center">
 
@@ -57,19 +52,10 @@ export default function VerifyEmailModal({
           onClick={onResend}
         >
           {countdown > 0
-            ? `Resend in ${countdown}s`
-            : 'Resend Email'}
+            ? `Resend in ${formatCountdown(countdown)}`
+            : 'Resend Email'
+          }
         </Button>
-
-        <Button
-          className="mt-3"
-          variant="outline"
-          fullWidth
-          onClick={onLogout}
-        >
-          Logout
-        </Button>
-
       </div>
     </Modal>
   );
