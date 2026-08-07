@@ -47,14 +47,6 @@ export default function ForgotPasswordForm() {
             >
                 Send Reset Link
             </Button>
-            <div className="text-center">
-                <Link
-                    to="/"
-                    className="text-sm font-medium text-blue-600 hover:underline"
-                >
-                    Back to Login
-                </Link>
-            </div>
         </form>
     );
 }
