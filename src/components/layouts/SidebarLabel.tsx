@@ -33,7 +33,7 @@ export default function Sidebar({
             <aside
                 className={`
                     fixed inset-y-0 left-0 z-50
-                    flex h-full flex-col bg-white shadow-sm
+                    flex h-full flex-col bg-[var(--surface)] shadow-sm
                     transition-all duration-300
                     ${open ? 'translate-x-0' : '-translate-x-full'}
                     lg:relative lg:translate-x-0
@@ -45,7 +45,7 @@ export default function Sidebar({
                 <button
                     type="button"
                     onClick={onCollapse}
-                    className="absolute -right-4 top-24 z-50 hidden h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-md transition hover:bg-slate-50 lg:flex"
+                    className="absolute -right-4 top-24 z-50 hidden h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] shadow-md transition hover:text-[var(--foreground)] lg:flex"
                 >
                     {collapsed ? (
                         <ChevronRight size={16} />

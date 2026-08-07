@@ -21,7 +21,7 @@ export default function FormField({ id, label, registration, error, type = 'text
 
     return (
         <div className="space-y-2">
-            <label htmlFor={id} className="block text-sm font-medium text-gray-900">
+            <label htmlFor={id} className="block text-sm font-medium text-[var(--foreground)]">
                 {label}{' '}{required && (<span className="ml-1 text-red-500">*</span>)} 
             </label>
 

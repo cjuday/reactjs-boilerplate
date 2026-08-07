@@ -43,8 +43,8 @@ export default function VerifyEmailPage() {
     if (isError) status = 'error';
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-50 p-6">
-            <div className="w-full max-w-md rounded-xl border bg-white p-8 shadow-sm">
+        <div className="flex min-h-screen items-center justify-center text-[var(--foreground)] p-6">
+            <div className="w-full max-w-md rounded-xl border bg-[var(--surface)] p-8 shadow-sm">
 
                 {status === 'loading' && (
                     <div className="flex flex-col items-center text-center">

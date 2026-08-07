@@ -31,7 +31,7 @@ export default function ChangePasswordForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="rounded-xl border bg-white p-6 shadow-sm space-y-5"
+            className="rounded-xl border bg-[var(--surface)] p-6 shadow-sm space-y-5"
         >
             <FormField
                 label="Current Password"

@@ -53,7 +53,7 @@ export default function Modal({ open, title, children, onClose, showCloseButton 
       }}
     >
       <div
-        className={`relative w-full rounded-xl bg-white shadow-xl ${sizes[size]}`}
+        className={`relative w-full rounded-xl bg-[var(--surface)] shadow-xl ${sizes[size]}`}
         onClick={(e) => e.stopPropagation()}
       >
         {(title || showCloseButton) && (

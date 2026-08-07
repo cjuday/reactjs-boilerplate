@@ -49,7 +49,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
         'group relative flex h-10 w-full items-center rounded-lg text-left text-sm font-medium transition-all duration-200',
         highlighted
             ? 'bg-blue-50 text-blue-700'
-            : 'text-slate-700 hover:bg-slate-100',
+            : 'text-[var(--foreground)] hover:bg-slate-100',
     );
 
     useEffect(() => {
@@ -133,7 +133,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
                             'group relative flex h-10 items-center rounded-lg text-sm font-medium transition-all duration-200',
                             isActive
                                 ? 'bg-blue-50 text-blue-700'
-                                : 'text-slate-700 hover:bg-slate-100',
+                                : 'text-[var(--foreground)] hover:bg-slate-100',
                         )
                     }
                 >

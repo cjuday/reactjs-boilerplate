@@ -4,7 +4,7 @@ export default function AppFooter() {
     const version = import.meta.env.VITE_APP_VERSION ?? 'v1.0.0';
 
     return (
-        <footer className="border-t border-slate-200 bg-white">
+        <footer className="border-t border-[var(--border)] bg-[var(--surface)]">
             <div className="flex h-14 items-center justify-between px-4 text-sm text-slate-500 lg:px-6">
                 <span>
                     © {year} {appName}. All rights reserved.
@@ -21,7 +21,7 @@ export default function AppFooter() {
                             href="https://taiammumuday.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium text-slate-700 transition-colors hover:text-blue-600"
+                            className="font-medium text-[var(--foreground)] transition-colors hover:text-blue-600"
                         >
                             Taiammum Uday
                         </a>

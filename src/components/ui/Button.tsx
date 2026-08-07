@@ -22,7 +22,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({children, className,
                 fullWidth && 'w-full',
                 {
                     'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500': variant === 'primary',
-                    'border border-gray-300 bg-white hover:bg-gray-50 focus:ring-gray-400': variant === 'secondary',
+                    'border border-gray-300 bg-[var(--surface)] hover:bg-gray-50 focus:ring-gray-400': variant === 'secondary',
                     'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500': variant === 'danger',
                     'hover:bg-gray-100 focus:ring-gray-400': variant === 'ghost',
                     'h-9 px-3 text-sm': size === 'sm',
