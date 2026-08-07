@@ -3,17 +3,21 @@ import { setCredentials, clearCredentials } from '@/features/auth/store/auth.sli
 import { Mutex } from 'async-mutex';
 import type { AuthResponse } from '@/features/auth';
 
+const mutex = new Mutex();
+
 export function baseQueryWithReauth( options: Parameters<typeof fetchBaseQuery>[0] ): BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> {
-    const mutex = new Mutex();
     const rawBaseQuery = fetchBaseQuery(options);
 
     return async (args, api, extraOptions) => {
-    // wait until the mutex is available without locking it
     await mutex.waitForUnlock();
 
     let result = await rawBaseQuery(args, api, extraOptions);
 
-    if (result.error?.status === 401) {
+    const url = typeof args === 'string' ? args : args.url;
+
+    const isAuthEndpoint = url === '/auth/refresh' || url === '/auth/logout' || url === '/auth/login';
+
+    if (result.error?.status === 401 && !isAuthEndpoint) {
         if (!mutex.isLocked()) {
             const release = await mutex.acquire();
 
@@ -35,6 +39,8 @@ export function baseQueryWithReauth( options: Parameters<typeof fetchBaseQuery>[
                     result = await rawBaseQuery(args, api, extraOptions);
                 } else {
                     api.dispatch(clearCredentials());
+
+                    return result;
                 }
             } finally {
                 release();
