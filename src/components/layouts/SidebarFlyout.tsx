@@ -1,0 +1,38 @@
+import { cn } from '@/shared/utils/cn';
+import SidebarNode from './SidebarNode';
+import type { SidebarMenuItem } from './types/sidebar.types';
+
+interface Props {
+    open: boolean;
+    items: SidebarMenuItem[];
+    onNavigate?: () => void;
+}
+
+export default function SidebarFlyout({ open, items, onNavigate }: Props) {
+    if (!open) {
+        return null;
+    }
+
+    return (
+        <div
+            className={cn(
+                'absolute left-full top-0 z-50 ml-2',
+                'w-56 rounded-xl bg-white p-1.5',
+                'shadow-[0_12px_40px_rgba(15,23,42,0.15)]',
+            )}
+        >
+            <div className="space-y-1">
+                {items.map((item) => (
+                    <SidebarNode
+                        key={item.id}
+                        item={item}
+                        collapsed={false}
+                        isFlyout
+                        level={0}
+                        onNavigate={onNavigate}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}

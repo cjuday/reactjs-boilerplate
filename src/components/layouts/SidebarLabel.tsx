@@ -1,41 +1,51 @@
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { sidebarMenu } from './sidebar-menu';
+import {
+    ChevronLeft,
+    ChevronRight,
+    X,
+} from 'lucide-react';
+
 import SidebarNode from './SidebarNode';
+import { sidebarMenu } from './sidebar-menu';
 
 interface SidebarProps {
     open: boolean;
     collapsed: boolean;
     onClose: () => void;
     onCollapse: () => void;
-    level?: number;
 }
 
-export default function Sidebar({ open, collapsed, onClose, onCollapse }: SidebarProps) {
+export default function Sidebar({
+    open,
+    collapsed,
+    onClose,
+    onCollapse,
+}: SidebarProps) {
     return (
         <>
-            {/* Mobile backdrop */}
+            {/* Mobile Backdrop */}
             {open && (
                 <div
-                    className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+                    className="fixed inset-0 z-40 bg-black/30 lg:hidden"
                     onClick={onClose}
                 />
             )}
 
             <aside
                 className={`
-                    h-full bg-white shadow-sm transition-all duration-300
                     fixed inset-y-0 left-0 z-50
+                    flex h-full flex-col bg-white shadow-sm
+                    transition-all duration-300
                     ${open ? 'translate-x-0' : '-translate-x-full'}
-                    lg:relative lg:inset-auto lg:translate-x-0
+                    lg:relative lg:translate-x-0
                     ${collapsed ? 'lg:w-20' : 'lg:w-60'}
                     w-60
-                    flex flex-col
                 `}
             >
+                {/* Collapse Button */}
                 <button
                     type="button"
                     onClick={onCollapse}
-                    className="absolute -right-4 top-4 z-50 hidden h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-md transition-all duration-200 hover:scale-110 hover:bg-slate-50 active:scale-95 lg:flex"
+                    className="absolute -right-4 top-24 z-50 hidden h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-md transition hover:bg-slate-50 lg:flex"
                 >
                     {collapsed ? (
                         <ChevronRight size={16} />
@@ -43,7 +53,8 @@ export default function Sidebar({ open, collapsed, onClose, onCollapse }: Sideba
                         <ChevronLeft size={16} />
                     )}
                 </button>
-                {/* Header */}
+
+                {/* Mobile Close */}
                 {open && (
                     <div className="flex justify-end border-b p-2 lg:hidden">
                         <button
@@ -54,13 +65,14 @@ export default function Sidebar({ open, collapsed, onClose, onCollapse }: Sideba
                         </button>
                     </div>
                 )}
+
                 {/* Navigation */}
-                 <nav
-                    className="flex-1 space-y-1 p-4"
+                <nav
+                    className="flex-1 space-y-1 overflow-y-auto p-4"
                 >
                     {sidebarMenu.map((item) => (
                         <SidebarNode
-                            key={item.label}
+                            key={item.id}
                             item={item}
                             collapsed={collapsed}
                             onNavigate={onClose}

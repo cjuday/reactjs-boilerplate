@@ -1,12 +1,9 @@
 import { z } from 'zod';
+import { confirmPasswordSchema, emailSchema } from '@/shared/schemas';
 
 export const loginSchema = z.object({
-  email: z.string()
-          .trim()
-          .min(1, { error: 'Please enter an email address!' })
-          .pipe(z.email({ error: 'Please enter a valid email address!' })),
-  password: z.string()
-             .min(1, { error: 'Please enter a password!' }),
+  email: emailSchema,
+  password: confirmPasswordSchema,
   rememberMe: z.boolean(),
 });
 

@@ -4,3 +4,5 @@ export { default as FormField } from './FormField';
 export { default as Input } from './Input';
 export { default as Spinner } from './Spinner';
 export { default as Dropdown } from './Dropdown';
+export { default as ReadonlyField } from './ReadonlyField';
+export { default as HeaderIconButton } from './HeaderIconButton';

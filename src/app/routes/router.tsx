@@ -7,6 +7,8 @@ import RegisterPage from '@/features/auth/pages/Register';
 import VerifyEmailPage from '@/features/auth/pages/VerifyEmail';
 import ForgotPassword from '@/features/auth/pages/ForgotPassword';
 import ResetPassword from '@/features/auth/pages/ResetPassword';
+import ProfilePage from '@/features/profile/pages/Profile';
+import SecurityPage from '@/features/security/pages/Security';
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ export const router = createBrowserRouter([
           {
             path: '/dashboard',
             element: <Dashboard />,
+          },
+          {
+              path: '/profile',
+              element: <ProfilePage />,
+          },
+          {
+              path: '/settings/security',
+              element: <SecurityPage />,
           },
         ],
       },
