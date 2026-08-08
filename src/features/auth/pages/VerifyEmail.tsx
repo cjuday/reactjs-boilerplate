@@ -57,7 +57,7 @@ export default function VerifyEmailPage() {
                             Verifying your email...
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-[var(--muted-foreground)]">
                             Please wait a moment.
                         </p>
                     </div>
@@ -74,7 +74,7 @@ export default function VerifyEmailPage() {
                             Email Verified
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-[var(--muted-foreground)]">
                             Your email has been verified successfully.
                         </p>
 
@@ -99,7 +99,7 @@ export default function VerifyEmailPage() {
                             Verification Failed
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-[var(--muted-foreground)]">
                             Something went wrong!
                         </p>
 

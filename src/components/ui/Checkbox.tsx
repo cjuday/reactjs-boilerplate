@@ -14,7 +14,7 @@ export default function Checkbox({ id, label, registration, disabled = false }: 
                 id={id ?? registration.name}
                 type="checkbox"
                 disabled={disabled}
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 disabled:cursor-not-allowed"
+                className="h-4 w-4 rounded border-[var(--border)] text-blue-600 focus:ring-[var(--primary)] disabled:cursor-not-allowed"
                 {...registration}
             />
             <span>{label}</span>

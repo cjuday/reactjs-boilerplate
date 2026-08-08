@@ -5,7 +5,7 @@ export default function AppFooter() {
 
     return (
         <footer className="border-t border-[var(--border)] bg-[var(--surface)]">
-            <div className="flex h-14 items-center justify-between px-4 text-sm text-slate-500 lg:px-6">
+            <div className="flex h-14 items-center justify-between px-4 text-sm text-[var(--muted-foreground)] lg:px-6">
                 <span>
                     © {year} {appName}. All rights reserved.
                 </span>

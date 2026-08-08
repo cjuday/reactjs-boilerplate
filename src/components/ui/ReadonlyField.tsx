@@ -15,12 +15,12 @@ export default function ReadonlyField({
                 {label}
             </label>
 
-            <div className="w-full rounded-md border border-slate-300 bg-slate-100 px-3 py-2 text-sm text-slate-600 cursor-not-allowed">
+            <div className="w-full rounded-md border text-[var(--border)] text-[var(--foreground)] px-3 py-2 text-sm text-[var(--muted-foreground)] cursor-not-allowed">
                 {value}
             </div>
 
             {helperText && (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[var(--muted-foreground)]">
                     {helperText}
                 </p>
             )}

@@ -66,7 +66,7 @@ export default function Modal({ open, title, children, onClose, showCloseButton 
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md p-1 transition hover:bg-slate-100"
+                className="rounded-md p-1 transition hover:text-[var(--foreground)]"
               >
                 <X size={20} />
               </button>

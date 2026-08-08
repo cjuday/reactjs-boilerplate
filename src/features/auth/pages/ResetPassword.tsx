@@ -26,7 +26,7 @@ export default function ResetPassword() {
                             Invalid Reset Link
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-[var(--muted-foreground)]">
                             This password reset link is invalid.
                         </p>
 

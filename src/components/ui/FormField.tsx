@@ -38,7 +38,7 @@ export default function FormField({ id, label, registration, error, type = 'text
                 autoComplete={autoComplete}
                 disabled={disabled}
                 aria-invalid={!!error}
-                className={error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''}
+                className={error ? 'border-red-500 focus:border-red-500 focus:ring-[var(--danger)]/20' : ''}
                 rightAdornment={
                 isPassword && (
                     <button

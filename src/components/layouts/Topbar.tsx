@@ -29,7 +29,7 @@ export default function Topbar({ onMenuClick }: Props) {
                 <button
                     type="button"
                     onClick={onMenuClick}
-                    className="rounded-md p-2 hover:bg-slate-100"
+                    className="rounded-md p-2 hover:text-[var(--foreground)]"
                 >
                     <Menu size={20} />
                 </button>
@@ -39,7 +39,7 @@ export default function Topbar({ onMenuClick }: Props) {
             {/* Desktop User Menu */}
             <div className="hidden items-center gap-2 px-6 lg:flex">
                 <Popover>
-                    <PopoverTrigger className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100">
+                    <PopoverTrigger className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--muted-foreground)] transition-colors hover:text-[var(--foreground)]">
                         <Moon size={18} />
                     </PopoverTrigger>
 

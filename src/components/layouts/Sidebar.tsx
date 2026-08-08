@@ -48,7 +48,7 @@ export default function Sidebar({ open, collapsed, onClose, onCollapse }: Sideba
                     <div className="flex justify-end border-b p-2 lg:hidden">
                         <button
                             onClick={onClose}
-                            className="rounded-md p-2 hover:bg-slate-100"
+                            className="rounded-md p-2 hover:text-[var(--foreground)]"
                         >
                             <X size={20} />
                         </button>

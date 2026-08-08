@@ -43,7 +43,7 @@ export default function PopoverContent({
                 'overflow-hidden rounded-xl',
                 'bg-[var(--surface)]',
                 'shadow-[0_12px_40px_rgba(15,23,42,0.15)]',
-                'ring-1 ring-slate-200/60',
+                'ring-1 ring-[var(--border)]',
                 originClass,
                 'transition-all duration-150 ease-out',
                 open

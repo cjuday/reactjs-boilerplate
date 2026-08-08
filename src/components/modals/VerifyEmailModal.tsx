@@ -32,7 +32,7 @@ export default function VerifyEmailModal({ open, email, onResend, onClose, count
           />
         </div>
 
-        <p className="text-slate-600">
+        <p className="text-[var(--muted-foreground)]">
           We've sent a verification email to
         </p>
 
@@ -40,7 +40,7 @@ export default function VerifyEmailModal({ open, email, onResend, onClose, count
           {email}
         </p>
 
-        <p className="mt-5 text-sm text-slate-500">
+        <p className="mt-5 text-sm text-[var(--muted-foreground)]">
           Please verify your email before continuing.
         </p>
 

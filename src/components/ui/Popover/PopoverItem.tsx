@@ -24,7 +24,7 @@ export default function PopoverItem({
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors',
                 selected
                     ? 'bg-blue-50 text-blue-700'
-                    : 'hover:bg-slate-100',
+                    : 'hover:text-[var(--foreground)]',
 
                 className,
             )}

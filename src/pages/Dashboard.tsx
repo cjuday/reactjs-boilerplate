@@ -5,7 +5,7 @@ export default function Dashboard() {
         Dashboard
       </h1>
 
-      <p className="mt-2 text-slate-600">
+      <p className="mt-2 text-[var(--muted-foreground)]">
         Welcome to the Finance Platform.
       </p>
     </div>
