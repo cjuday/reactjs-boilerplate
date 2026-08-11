@@ -30,8 +30,8 @@ export default function SidebarRow({ icon: Icon, label, active, collapsed, hasCh
                         className={cn(
                             'transition-colors duration-200',
                             active
-                                ? 'text-blue-600'
-                                : 'text-slate-500 group-hover:text-slate-700',
+                                ? 'text-primary'
+                                : 'text-muted group-hover:text-foreground',
                         )}
                     />
                 </div>

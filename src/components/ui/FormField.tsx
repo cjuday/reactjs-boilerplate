@@ -21,8 +21,8 @@ export default function FormField({ id, label, registration, error, type = 'text
 
     return (
         <div className="space-y-2">
-            <label htmlFor={id} className="block text-sm font-medium text-gray-900">
-                {label}{' '}{required && (<span className="ml-1 text-red-500">*</span>)} 
+            <label htmlFor={id} className="block text-sm font-medium text-foreground">
+                {label}{' '}{required && (<span className="ml-1 text-danger">*</span>)} 
             </label>
 
             <Input
@@ -38,13 +38,13 @@ export default function FormField({ id, label, registration, error, type = 'text
                 autoComplete={autoComplete}
                 disabled={disabled}
                 aria-invalid={!!error}
-                className={error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : ''}
+                className={error ? 'border-danger focus:border-danger focus:ring-danger/20' : ''}
                 rightAdornment={
                 isPassword && (
                     <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="flex h-full items-center text-gray-500 transition-colors hover:text-gray-700"
+                    className="flex h-full items-center text-muted transition-colors hover:text-foreground"
                     aria-label={
                         showPassword
                         ? 'Hide password'
@@ -63,7 +63,7 @@ export default function FormField({ id, label, registration, error, type = 'text
             />
 
             {error && (
-                <p className="text-sm text-red-600">
+                <p className="text-sm text-danger">
                 {error}
                 </p>
             )}

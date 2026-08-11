@@ -8,10 +8,10 @@ interface Props {
 
 export default function Topbar({ onMenuClick }: Props) {
     return (
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-white shadow-sm">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-surface border-b border-border-subtle">
             {/* Desktop */}
             <div className="hidden lg:flex">
-                <div className="hidden h-16 w-60 items-center justify-center border-b border-slate-200 bg-white lg:flex">
+                <div className="hidden h-16 w-60 items-center justify-center border-b border-border-subtle bg-surface lg:flex">
                     <Logo />
                 </div>
 
@@ -26,7 +26,7 @@ export default function Topbar({ onMenuClick }: Props) {
                 <button
                     type="button"
                     onClick={onMenuClick}
-                    className="rounded-md p-2 hover:bg-slate-100"
+                    className="rounded-control p-2 hover:bg-surface-hover"
                 >
                     <Menu size={20} />
                 </button>

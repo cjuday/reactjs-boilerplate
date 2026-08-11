@@ -8,7 +8,7 @@ export default function SecurityPage() {
                     Security
                 </h1>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-muted">
                     Manage your account security settings.
                 </p>
             </div>

@@ -5,7 +5,6 @@ import { Button, FormField } from '@/components/ui';
 import { getErrorMessage } from '@/shared/utils/GetErrorMessage';
 import { useForgotPassword } from '../hooks/use-forgot-password';
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from '../schemas/forgot-password.schema';
-import { Link } from 'react-router-dom';
 
 export default function ForgotPasswordForm() {
     const { sendResetLink, isLoading } = useForgotPassword();

@@ -18,15 +18,15 @@ export default function ResetPassword() {
                 <AuthCard>
                     <div className="flex flex-col items-center text-center">
                         <XCircle
-                            className="text-red-600"
+                            className="text-danger"
                             size={56}
                         />
 
-                        <h2 className="mt-6 text-xl font-semibold">
+                        <h2 className="mt-6 text-xl font-semibold text-foreground">
                             Invalid Reset Link
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-muted">
                             This password reset link is invalid.
                         </p>
 

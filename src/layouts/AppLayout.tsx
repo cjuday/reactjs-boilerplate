@@ -65,7 +65,7 @@ export default function AppLayout() {
 
     return (
         <>
-            <div className="flex h-screen flex-col bg-slate-50">
+            <div className="flex h-screen flex-col bg-background">
                 <Topbar onMenuClick={() => setSidebarOpen(true)}/>
                 <div className="flex flex-1 overflow-hidden">
                     {/* Desktop Sidebar */}

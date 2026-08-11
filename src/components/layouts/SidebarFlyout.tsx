@@ -17,11 +17,11 @@ export default function SidebarFlyout({ open, items, onNavigate }: Props) {
         <div
             className={cn(
                 'absolute left-full top-0 z-50 ml-2',
-                'w-56 rounded-xl bg-white p-1.5',
-                'shadow-[0_12px_40px_rgba(15,23,42,0.15)]',
+                'w-56 rounded-control bg-surface',
+                'shadow-popover',
             )}
         >
-            <div className="space-y-1">
+            <div className="space">
                 {items.map((item) => (
                     <SidebarNode
                         key={item.id}

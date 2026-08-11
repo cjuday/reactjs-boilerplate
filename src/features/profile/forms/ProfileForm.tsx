@@ -70,7 +70,7 @@ export default function ProfileForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="rounded-xl border bg-white p-6 shadow-sm space-y-5"
+            className="rounded-card bg-surface p-6 shadow-card space-y-5"
         >
             <FormField
                 label="Full Name"

@@ -79,7 +79,7 @@ export default function LoginForm() {
 
                 <Link
                     to="/forgot-password"
-                    className="text-sm font-medium text-blue-600 hover:underline"
+                    className="text-sm font-medium text-primary hover:underline"
                 >
                     Forgot password?
                 </Link>

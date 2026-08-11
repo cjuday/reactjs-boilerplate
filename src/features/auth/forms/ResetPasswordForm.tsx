@@ -77,7 +77,7 @@ export default function ResetPasswordForm({ token }: Props) {
             <div className="text-center">
                 <Link
                     to="/"
-                    className="text-sm font-medium text-blue-600 hover:underline"
+                    className="text-sm font-medium text-primary hover:underline"
                 >
                     Back to Login
                 </Link>

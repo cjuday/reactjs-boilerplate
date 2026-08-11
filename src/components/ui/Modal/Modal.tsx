@@ -53,7 +53,7 @@ export default function Modal({ open, title, children, onClose, showCloseButton 
       }}
     >
       <div
-        className={`relative w-full rounded-xl bg-white shadow-xl ${sizes[size]}`}
+        className={`relative w-full rounded-card bg-surface shadow-card ${sizes[size]}`}
         onClick={(e) => e.stopPropagation()}
       >
         {(title || showCloseButton) && (
@@ -66,7 +66,7 @@ export default function Modal({ open, title, children, onClose, showCloseButton 
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md p-1 transition hover:bg-slate-100"
+                className="rounded-control p-1 transition hover:bg-surface-hover"
               >
                 <X size={20} />
               </button>

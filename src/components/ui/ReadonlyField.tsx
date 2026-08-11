@@ -11,16 +11,16 @@ export default function ReadonlyField({
 }: ReadonlyFieldProps) {
     return (
         <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-700">
+            <label className="text-sm font-medium text-foreground">
                 {label}
             </label>
 
-            <div className="w-full rounded-md border border-slate-300 bg-slate-100 px-3 py-2 text-sm text-slate-600 cursor-not-allowed">
+            <div className="w-full rounded-control border border-border bg-surface-hover px-3 py-2 text-sm text-muted cursor-not-allowed">
                 {value}
             </div>
 
             {helperText && (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted">
                     {helperText}
                 </p>
             )}

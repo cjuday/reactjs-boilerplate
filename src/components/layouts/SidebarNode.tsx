@@ -46,10 +46,8 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
     }, [active]);
 
     const groupClasses = cn(
-        'group relative flex h-10 w-full items-center rounded-lg text-left text-sm font-medium transition-all duration-200',
-        highlighted
-            ? 'bg-blue-50 text-blue-700'
-            : 'text-slate-700 hover:bg-slate-100',
+        'group relative flex h-10 w-full items-center rounded-control text-left text-sm font-medium transition-all duration-200',
+        highlighted ? 'bg-primary-soft text-primary' : 'text-foreground hover:bg-surface-hover',
     );
 
     useEffect(() => {
@@ -88,7 +86,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
     }, [location.pathname, active]);
 
     return (
-        <div ref={containerRef} className="relative space-y-1">
+        <div ref={containerRef} className="relative space">
             {hasChildren ? (
                 <button
                     type="button"
@@ -104,9 +102,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
                     <div
                         className={cn(
                             'absolute left-1 top-1/2 h-6 w-1 -translate-y-1/2 rounded-full transition-all duration-200',
-                            highlighted
-                                ? 'bg-blue-300'
-                                : 'bg-transparent',
+                            highlighted ? 'bg-primary-muted' : 'bg-transparent',
                         )}
                     />
 
@@ -130,10 +126,8 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
                     onClick={handleNavigate}
                     className={({ isActive }) =>
                         cn(
-                            'group relative flex h-10 items-center rounded-lg text-sm font-medium transition-all duration-200',
-                            isActive
-                                ? 'bg-blue-50 text-blue-700'
-                                : 'text-slate-700 hover:bg-slate-100',
+                            'group relative flex h-10 items-center rounded-control text-sm font-medium transition-all duration-200',
+                            isActive ? 'bg-primary-soft text-primary' : 'text-foreground hover:bg-surface-hover',
                         )
                     }
                 >
@@ -142,9 +136,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
                             <div
                                 className={cn(
                                     'absolute left-1 top-1/2 h-6 w-1 -translate-y-1/2 rounded-full transition-all duration-200',
-                                    isActive
-                                        ? 'bg-blue-600'
-                                        : 'bg-transparent',
+                                    isActive ? 'bg-primary' : 'bg-transparent',
                                 )}
                             />
 

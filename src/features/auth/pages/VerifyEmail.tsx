@@ -13,7 +13,7 @@ export default function VerifyEmailPage() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const token = searchParams.get('token');
-    const [verifyEmail, { isSuccess, isError, error }] = useVerifyEmailMutation();
+    const [verifyEmail, { isSuccess, isError }] = useVerifyEmailMutation();
     const hasVerified = useRef(false);
 
     useEffect(() => {
@@ -43,13 +43,13 @@ export default function VerifyEmailPage() {
     if (isError) status = 'error';
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-50 p-6">
-            <div className="w-full max-w-md rounded-xl border bg-white p-8 shadow-sm">
+        <div className="flex min-h-screen items-center justify-center bg-background p-6">
+            <div className="w-full max-w-md rounded-card bg-surface p-8 shadow-card">
 
                 {status === 'loading' && (
                     <div className="flex flex-col items-center text-center">
                         <Loader2
-                            className="animate-spin text-blue-600"
+                            className="animate-spin text-primary"
                             size={48}
                         />
 
@@ -57,7 +57,7 @@ export default function VerifyEmailPage() {
                             Verifying your email...
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-muted">
                             Please wait a moment.
                         </p>
                     </div>
@@ -66,7 +66,7 @@ export default function VerifyEmailPage() {
                 {status === 'success' && (
                     <div className="flex flex-col items-center text-center">
                         <CheckCircle
-                            className="text-green-600"
+                            className="text-success"
                             size={56}
                         />
 
@@ -74,7 +74,7 @@ export default function VerifyEmailPage() {
                             Email Verified
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-muted">
                             Your email has been verified successfully.
                         </p>
 
@@ -91,7 +91,7 @@ export default function VerifyEmailPage() {
                 {status === 'error' && (
                     <div className="flex flex-col items-center text-center">
                         <XCircle
-                            className="text-red-600"
+                            className="text-danger"
                             size={56}
                         />
 
@@ -99,7 +99,7 @@ export default function VerifyEmailPage() {
                             Verification Failed
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
+                        <p className="mt-2 text-muted">
                             Something went wrong!
                         </p>
 

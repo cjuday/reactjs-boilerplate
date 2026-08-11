@@ -18,8 +18,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, leftAdornme
             <input
                 ref={ref}
                 className={cn(
-                    'w-full rounded-lg border border-gray-300 bg-white py-2 text-sm outline-none transition-colors',
-                    'focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20',
+                    'w-full rounded-control border border-border bg-surface py-2 text-sm outline-none transition-colors',
+                    'focus:border-primary focus:ring-2 focus:ring-primary/20',
                     leftAdornment ? 'pl-10' : 'px-3',
                     rightAdornment ? 'pr-10' : 'px-3',
                     className,

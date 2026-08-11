@@ -16,7 +16,7 @@ export default function UserMenu() {
             <Link
                 to="/profile"
                 title="Profile"
-                className="rounded-lg p-2 text-slate-600 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900"
+                className="rounded-control p-2 text-muted transition-all duration-200 hover:bg-surface-hover hover:text-foreground"
             >
                 <User size={20} />
             </Link>

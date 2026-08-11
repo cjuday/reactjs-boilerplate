@@ -11,7 +11,7 @@ export default function AuthHeader({ title, description }: Props) {
       </h1>
 
       {description && (
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-muted">
           {description}
         </p>
       )}

@@ -8,7 +8,7 @@ export default function ProfilePage() {
                     Profile
                 </h1>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-muted">
                     Update your personal information.
                 </p>
             </div>

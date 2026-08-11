@@ -25,14 +25,14 @@ export default function VerifyEmailModal({ open, email, onResend, onClose, count
     >
       <div className="flex flex-col items-center text-center">
 
-        <div className="mb-5 rounded-full bg-blue-100 p-4">
+        <div className="mb-5 rounded-full bg-primary-soft p-4">
           <Mail
-            className="text-blue-600"
+            className="text-primary"
             size={32}
           />
         </div>
 
-        <p className="text-slate-600">
+        <p className="text-muted">
           We've sent a verification email to
         </p>
 
@@ -40,7 +40,7 @@ export default function VerifyEmailModal({ open, email, onResend, onClose, count
           {email}
         </p>
 
-        <p className="mt-5 text-sm text-slate-500">
+        <p className="mt-5 text-sm text-muted">
           Please verify your email before continuing.
         </p>
 
