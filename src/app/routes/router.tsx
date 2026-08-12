@@ -9,6 +9,9 @@ import ForgotPassword from '@/features/auth/pages/ForgotPassword';
 import ResetPassword from '@/features/auth/pages/ResetPassword';
 import ProfilePage from '@/features/profile/pages/Profile';
 import SecurityPage from '@/features/security/pages/Security';
+import NotFoundPage from '@/pages/NotFoundPage';
+import ForbiddenPage from '@/pages/ForbiddenPage';
+import ServerErrorPage from '@/pages/ServerErrorPage';
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +21,14 @@ export const router = createBrowserRouter([
   {
     path: '/auth/reset-password',
     element: <ResetPassword />,
+  },
+  {
+    path: '/403',
+    element: <ForbiddenPage />,
+  },
+  {
+    path: '/500',
+    element: <ServerErrorPage />,
   },
   {
     element: <GuestGuard />,
@@ -33,7 +44,7 @@ export const router = createBrowserRouter([
       {
         path: '/forgot-password',
         element: <ForgotPassword/>
-      }
+      },
     ],
   },
   {
@@ -53,6 +64,10 @@ export const router = createBrowserRouter([
           {
               path: '/settings/security',
               element: <SecurityPage />,
+          },
+          {
+            path: '*',
+            element: <NotFoundPage />,
           },
         ],
       },
