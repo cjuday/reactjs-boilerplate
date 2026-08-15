@@ -12,6 +12,8 @@ import SecurityPage from '@/features/security/pages/Security';
 import NotFoundPage from '@/pages/NotFoundPage';
 import ForbiddenPage from '@/pages/ForbiddenPage';
 import ServerErrorPage from '@/pages/ServerErrorPage';
+import UserList from '@/features/users/pages/UserList';
+import UserEdit from '@/features/users/pages/UserEdit';
 
 export const router = createBrowserRouter([
   {
@@ -58,12 +60,20 @@ export const router = createBrowserRouter([
             element: <Dashboard />,
           },
           {
-              path: '/profile',
-              element: <ProfilePage />,
+            path: '/profile',
+            element: <ProfilePage />,
           },
           {
-              path: '/settings/security',
-              element: <SecurityPage />,
+            path: '/settings/security',
+            element: <SecurityPage />,
+          },
+          {
+            path: '/users',
+            element: <UserList />,
+          },
+          {
+              path: '/users/:id/edit',
+              element: <UserEdit />,
           },
           {
             path: '*',
