@@ -19,6 +19,7 @@ export default function UserEdit() {
         isError,
     } = useGetUserQuery(id!, {
         skip: !id,
+        refetchOnMountOrArgChange: true,
     });
 
     const [
@@ -32,13 +33,14 @@ export default function UserEdit() {
             name: '',
             email: '',
             phoneNumber: '',
+            roleId: '',
+            isActive: true,
+            password: '',
+            confirmPassword: '',
         },
     });
 
-    const {
-        reset,
-        handleSubmit,
-    } = form;
+    const { reset, handleSubmit } = form;
 
     useEffect(() => {
         if (!user) {
@@ -49,6 +51,10 @@ export default function UserEdit() {
             name: user.name,
             email: user.email,
             phoneNumber: user.phoneNumber ?? '',
+            roleId: user.role?.id ?? '',
+            isActive: user.isActive,
+            password: '',
+            confirmPassword: '',
         });
     }, [user, reset]);
 
@@ -65,6 +71,13 @@ export default function UserEdit() {
                 data: {
                     name: values.name,
                     phoneNumber: values.phoneNumber,
+                    roleId: values.roleId,
+                    isActive: values.isActive,
+                    ...(values.password ? { 
+                        password: values.password, 
+                        confirmPassword: values.confirmPassword 
+                    } : {}),
+                    
                 },
             }).unwrap();
 
@@ -131,7 +144,7 @@ export default function UserEdit() {
     }
 
     return (
-        <div className="ml-4 max-w-2xl">
+        <div className="ml-4">
             <div className="mb-6">
                 <h1 className="text-2xl font-semibold text-foreground">
                     Edit User

@@ -14,6 +14,7 @@ import ForbiddenPage from '@/pages/ForbiddenPage';
 import ServerErrorPage from '@/pages/ServerErrorPage';
 import UserList from '@/features/users/pages/UserList';
 import UserEdit from '@/features/users/pages/UserEdit';
+import UserCreate from '@/features/users/pages/UserCreate';
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
           {
             path: '/users',
             element: <UserList />,
+          },
+          {
+              path: '/users/create',
+              element: <UserCreate />,
           },
           {
               path: '/users/:id/edit',

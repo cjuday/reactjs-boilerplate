@@ -70,6 +70,29 @@ export const usersApi = api.injectEndpoints({
                 url: `/users/${id}`,
                 method: 'GET',
             }),
+            providesTags: (_result, _error, id) => [
+                { type: 'Users', id },
+            ],
+        }),
+
+        createUser: builder.mutation<
+            { message: string; user: User },
+            {
+                name: string;
+                email: string;
+                phoneNumber: string;
+                roleId: string;
+                isActive: boolean;
+                password: string;
+                confirmPassword: string;
+            }
+        >({
+            query: (data) => ({
+                url: '/users',
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['Users'],
         }),
 
         updateUser: builder.mutation<
@@ -79,6 +102,10 @@ export const usersApi = api.injectEndpoints({
                 data: {
                     name: string;
                     phoneNumber: string;
+                    roleId: string;
+                    isActive: boolean;
+                    password?: string;
+                    confirmPassword?: string;
                 };
             }
         >({
@@ -87,7 +114,10 @@ export const usersApi = api.injectEndpoints({
                 method: 'PATCH',
                 body: data,
             }),
-            invalidatesTags: ['Users'],
+            invalidatesTags: (_result, _error, { id }) => [
+                'Users',
+                { type: 'Users', id },
+            ],
         }),
 
         deleteUser: builder.mutation<{ message: string }, string>({
@@ -95,7 +125,10 @@ export const usersApi = api.injectEndpoints({
                 url: `/users/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Users'],
+            invalidatesTags: (_result, _error, id) => [
+                'Users',
+                { type: 'Users', id },
+            ],
         }),
 
         getUsersTableConfig: builder.query<UsersTableConfig, void>({
@@ -147,4 +180,5 @@ export const {
     useDeleteUserMutation,
     useGetUserQuery,
     useUpdateUserMutation,
+    useCreateUserMutation,
 } = usersApi;

@@ -20,6 +20,8 @@ import {
 } from '../api/userApi';
 
 import type { DataTableRowAction } from '@/components/ui/DataTable/types';
+import { Button } from '@/components/ui';
+import { UserPlus } from 'lucide-react';
 
 export default function UserList() {
     const navigate = useNavigate();
@@ -143,20 +145,20 @@ export default function UserList() {
             return tableConfig.columns.map(
                 (column) => {
                     const baseColumn: DataTableColumn<User> =
-                        {
-                            key: column.key as keyof User &
-                                string,
-                            label: column.label,
-                            visible: column.visible,
-                            sortable:
-                                column.sortable,
-                            searchable:
-                                column.searchable,
-                            exportable:
-                                column.exportable,
-                            filter:
-                                column.filter,
-                        };
+                    {
+                        key: column.key as keyof User &
+                            string,
+                        label: column.label,
+                        visible: column.visible,
+                        sortable:
+                            column.sortable,
+                        searchable:
+                            column.searchable,
+                        exportable:
+                            column.exportable,
+                        filter:
+                            column.filter,
+                    };
 
                     /*
                      * Email verification status
@@ -194,8 +196,8 @@ export default function UserList() {
                             <span className="text-foreground">
                                 {value
                                     ? (
-                                          value as User['role']
-                                      )?.name
+                                        value as User['role']
+                                    )?.name
                                     : '—'}
                             </span>
                         );
@@ -301,14 +303,24 @@ export default function UserList() {
 
     return (
         <div className="ml-4">
-            <div className="mb-6">
-                <h1 className="text-2xl font-semibold">
-                    Users
-                </h1>
+            <div className="mb-6 flex items-start justify-between">
+                <div>
+                    <h1 className="text-2xl font-semibold">
+                        Users
+                    </h1>
 
-                <p className="mt-1 text-sm text-muted">
-                    Manage system users.
-                </p>
+                    <p className="mt-1 text-sm text-muted">
+                        Manage system users.
+                    </p>
+                </div>
+
+                <Button
+                    type="button"
+                    onClick={() => navigate('/users/create')}
+                >
+                    <UserPlus size={17} />
+                    Create User
+                </Button>
             </div>
 
             <DataTable
