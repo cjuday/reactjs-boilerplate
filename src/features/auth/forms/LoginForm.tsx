@@ -60,6 +60,7 @@ export default function LoginForm() {
                 autoComplete="email"
                 registration={register('email')}
                 error={errors.email?.message}
+                labelPosition={'top'}
             />
 
             <FormField
@@ -69,6 +70,7 @@ export default function LoginForm() {
                 autoComplete="current-password"
                 registration={register('password')}
                 error={errors.password?.message}
+                labelPosition={'top'}
             />
 
             <div className="flex items-center justify-between">

@@ -1,4 +1,4 @@
-import { Button, FormField, ReadonlyField } from '@/components/ui';
+import { Button, FormField, ReadonlyField, Select } from '@/components/ui';
 import { Controller, useFormContext } from 'react-hook-form';
 import type { UserFormValues } from '../schemas/user-form.schema';
 import { useGetRoleOptionsQuery } from '@/features/roles/api/rolesApi';
@@ -11,31 +11,31 @@ interface UserFormProps {
     onCancel: () => void;
 }
 
-export default function UserForm({
-    mode,
-    loading,
-    submitLabel,
-    email,
-    onCancel,
-}: UserFormProps) {
-    const {
-        data: roles = [],
-        isLoading: rolesLoading,
-    } = useGetRoleOptionsQuery();
+export default function UserForm({ mode, loading, submitLabel, email, onCancel }: UserFormProps) {
+    const { data: roles = [], isLoading: rolesLoading } = useGetRoleOptionsQuery();
 
-    const {
-        register,
-        control,
-        formState: { errors },
-        watch,
-    } = useFormContext<UserFormValues>();
+    const { register, control, formState: { errors } } = useFormContext<UserFormValues>();
 
-    const roleId = watch('roleId');
-    const isActive = watch('isActive');
+    const roleOptions = roles.map((role) => ({
+        label: role.name,
+        value: role.id,
+    }));
+
+    const statusOptions = [
+        {
+            label: 'Active',
+            value: 'true',
+        },
+        {
+            label: 'Inactive',
+            value: 'false',
+        },
+    ];
 
     return (
         <div className="space-y-5 rounded-card bg-surface p-6 shadow-card">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+
                 {/* Full Name */}
                 <FormField
                     label="Full Name"
@@ -51,7 +51,6 @@ export default function UserForm({
                     <ReadonlyField
                         label="Email"
                         value={email ?? ''}
-                        helperText="Email address cannot be changed."
                     />
                 ) : (
                     <FormField
@@ -76,44 +75,30 @@ export default function UserForm({
                 />
 
                 {/* Role */}
-                <div>
-                    <label
-                        htmlFor="roleId"
-                        className="mb-1.5 block text-sm font-medium text-foreground"
-                    >
-                        Role
-                        <span className="ml-1 text-danger">*</span>
-                    </label>
-
-                    <select
-                        id="roleId"
-                        {...register('roleId')}
-                        value={roleId ?? ''}
-                        disabled={rolesLoading || loading}
-                        className="w-full rounded-control border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-                    >
-                        <option value="">
-                            {rolesLoading
-                                ? 'Loading roles...'
-                                : 'Select a role'}
-                        </option>
-
-                        {roles.map((role) => (
-                            <option
-                                key={role.id}
-                                value={role.id}
-                            >
-                                {role.name}
-                            </option>
-                        ))}
-                    </select>
-
-                    {errors.roleId && (
-                        <p className="mt-1 text-sm text-danger">
-                            {String(errors.roleId.message)}
-                        </p>
+                <Controller
+                    name="roleId"
+                    control={control}
+                    render={({ field }) => (
+                        <Select
+                            id="roleId"
+                            label="Role"
+                            required
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={roleOptions}
+                            searchable
+                            placeholder={
+                                rolesLoading
+                                    ? 'Loading roles...'
+                                    : 'Select a role'
+                            }
+                            disabled={
+                                rolesLoading || loading
+                            }
+                            error={errors.roleId?.message}
+                        />
                     )}
-                </div>
+                />
 
                 {/* Password */}
                 <div>
@@ -129,12 +114,6 @@ export default function UserForm({
                         registration={register('password')}
                         error={errors.password?.message}
                     />
-
-                    {mode === 'edit' && (
-                        <p className="mt-1 text-sm text-muted">
-                            Leave blank to keep the current password.
-                        </p>
-                    )}
                 </div>
 
                 {/* Confirm Password */}
@@ -144,56 +123,44 @@ export default function UserForm({
                     placeholder="Confirm password"
                     autoComplete="new-password"
                     registration={register('confirmPassword')}
-                    error={errors.confirmPassword?.message}
+                    error={
+                        errors.confirmPassword?.message
+                    }
                 />
 
                 {/* Account Status */}
-                <div>
-                    <label
-                        htmlFor="isActive"
-                        className="mb-1.5 block text-sm font-medium text-foreground"
-                    >
-                        Account Status
-                    </label>
-
-                    <Controller
-                        name="isActive"
-                        control={control}
-                        render={({ field }) => (
-                            <select
-                                id="isActive"
-                                value={
-                                    isActive === true
-                                        ? 'true'
-                                        : 'false'
-                                }
-                                onChange={(event) => {
-                                    field.onChange(
-                                        event.target.value === 'true',
-                                    );
-                                }}
-                                disabled={loading}
-                                className="w-full rounded-control border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-                            >
-                                <option value="true">
-                                    Active
-                                </option>
-                                <option value="false">
-                                    Inactive
-                                </option>
-                            </select>
-                        )}
-                    />
-                </div>
+                <Controller
+                    name="isActive"
+                    control={control}
+                    render={({ field }) => (
+                        <Select
+                            id="isActive"
+                            label="Account Status"
+                            value={
+                                field.value
+                                    ? 'true'
+                                    : 'false'
+                            }
+                            onChange={(value) =>
+                                field.onChange(
+                                    value === 'true',
+                                )
+                            }
+                            options={statusOptions}
+                            disabled={loading}
+                        />
+                    )}
+                />
             </div>
 
             {/* Actions */}
             <div className="flex justify-center gap-2 pt-5">
                 <Button
                     type="button"
-                    variant="secondary"
+                    variant="danger"
                     onClick={onCancel}
                     disabled={loading}
+                    size="xs"
                 >
                     Cancel
                 </Button>
@@ -201,6 +168,7 @@ export default function UserForm({
                 <Button
                     type="submit"
                     loading={loading}
+                    size="xs"
                 >
                     {submitLabel}
                 </Button>

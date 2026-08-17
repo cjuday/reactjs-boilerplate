@@ -303,7 +303,7 @@ export default function UserList() {
 
     return (
         <div>
-            <div className="mb-6 flex items-start justify-between">
+            <div className="mb-6 flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-semibold">
                         Users
@@ -317,6 +317,7 @@ export default function UserList() {
                 <Button
                     type="button"
                     onClick={() => navigate('/users/create')}
+                    size="xs"
                 >
                     <UserPlus size={17} />
                     Create User

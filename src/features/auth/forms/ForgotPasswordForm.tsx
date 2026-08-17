@@ -37,6 +37,7 @@ export default function ForgotPasswordForm() {
                 autoComplete="email"
                 registration={register('email')}
                 error={errors.email?.message}
+                labelPosition={'top'}
             />
 
             <Button

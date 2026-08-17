@@ -52,6 +52,7 @@ export default function RegisterForm() {
         autoComplete="name"
         registration={register('name')}
         error={errors.name?.message}
+        labelPosition={'top'}
       />
 
       <FormField
@@ -62,6 +63,7 @@ export default function RegisterForm() {
         autoComplete="email"
         registration={register('email')}
         error={errors.email?.message}
+        labelPosition={'top'}
       />
 
       <FormField
@@ -72,6 +74,7 @@ export default function RegisterForm() {
         autoComplete="tel"
         registration={register('phoneNumber')}
         error={errors.phoneNumber?.message}
+        labelPosition={'top'}
       />
 
       <FormField
@@ -82,6 +85,7 @@ export default function RegisterForm() {
         autoComplete="new-password"
         registration={register('password')}
         error={errors.password?.message}
+        labelPosition={'top'}
       />
 
       <FormField
@@ -92,6 +96,7 @@ export default function RegisterForm() {
         autoComplete="new-password"
         registration={register('confirmPassword')}
         error={errors.confirmPassword?.message}
+        labelPosition={'top'}
       />
 
       <Button

@@ -5,9 +5,11 @@ import { Button, FormField } from '@/components/ui';
 import { getErrorMessage } from '@/shared/utils/GetErrorMessage';
 import { useSecurity } from '../hooks/use-security';
 import { changePasswordSchema, type ChangePasswordFormValues } from '../schemas/change-password.schema';
+import { useNavigate } from 'react-router-dom';
 
 export default function ChangePasswordForm() {
     const { change, isLoading } = useSecurity();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<ChangePasswordFormValues>({
         resolver: zodResolver(changePasswordSchema),
@@ -63,7 +65,7 @@ export default function ChangePasswordForm() {
             />
 
             <div className="flex gap-2 pt-5">
-                <Button size='xs' variant='danger' className='flex-1'>Cancel</Button>
+                <Button size='xs' variant='danger' className='flex-1' onClick={() => navigate('/dashboard')}>Cancel</Button>
                 <Button type="submit" loading={isLoading} size='xs' className='flex-1'>
                     Update
                 </Button>

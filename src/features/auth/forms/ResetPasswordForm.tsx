@@ -55,6 +55,7 @@ export default function ResetPasswordForm({ token }: Props) {
                 autoComplete="new-password"
                 registration={register('password')}
                 error={errors.password?.message}
+                labelPosition={'top'}
             />
 
             <FormField
@@ -65,6 +66,7 @@ export default function ResetPasswordForm({ token }: Props) {
                 autoComplete="new-password"
                 registration={register('confirmPassword')}
                 error={errors.confirmPassword?.message}
+                labelPosition={'top'}
             />
 
             <Button
