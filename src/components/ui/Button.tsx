@@ -5,7 +5,7 @@ import { cn } from '@/shared/utils/cn';
 interface ButtonProps
     extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'outline' | 'success' | 'warning' | 'link';
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'xs' | 'sm' | 'md' | 'lg';
     loading?: boolean;
     fullWidth?: boolean;
 }
@@ -25,6 +25,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({children, className,
                     'border border-border bg-surface hover:bg-surface-hover focus:ring-primary': variant === 'secondary',
                     'bg-danger text-white hover:bg-danger-hover focus:ring-danger': variant === 'danger',
                     'hover:bg-surface-hover focus:ring-primary': variant === 'ghost',
+                    'h-8 px-3 text-xs' : size === 'xs',
                     'h-9 px-3 text-sm': size === 'sm',
                     'h-10 px-4 text-sm': size === 'md',
                     'h-11 px-5 text-base': size === 'lg',

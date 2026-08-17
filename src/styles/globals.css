@@ -14,6 +14,14 @@
     --color-primary-foreground: #ffffff;
     --color-primary-soft: #eff6ff;
     --color-primary-muted: #93c5fd;
+    --color-ocean-blue: #05b1bf;
+    --color-bottle-green: #006A4E;
+    --color-seaweed-green: #1B2F11;
+    --color-arctic-blue-heavy: #006B9B;
+    --color-arctic-blue-light: #A2D2ff;
+    --color-slate-gray: #708090;
+    --color-pewter-gray: #899499;
+    --color-light-gray: #D3D3D3;
 
     --color-success: #16a34a;
 
@@ -24,8 +32,8 @@
     --color-border-subtle: #e8edf3;
 
     /* Radius */
-    --radius-card: 0.75rem;
-    --radius-control: 0.5rem;
+    --radius-card: 0.5rem;
+    --radius-control: 0.25rem;
 
     /* Shadows */
     --shadow-card: 0 4px 20px rgb(15 23 42 / 0.08);

@@ -91,7 +91,7 @@ export default function UserEdit() {
 
     if (userLoading) {
         return (
-            <div className="ml-4">
+            <div>
                 <div className="mb-6">
                     <h1 className="text-2xl font-semibold text-foreground">
                         Edit User
@@ -113,7 +113,7 @@ export default function UserEdit() {
 
     if (isError || !user) {
         return (
-            <div className="ml-4">
+            <div>
                 <div className="mb-6">
                     <h1 className="text-2xl font-semibold text-foreground">
                         Edit User
@@ -144,7 +144,7 @@ export default function UserEdit() {
     }
 
     return (
-        <div className="ml-4">
+        <div>
             <div className="mb-6">
                 <h1 className="text-2xl font-semibold text-foreground">
                     Edit User

@@ -302,7 +302,7 @@ export default function UserList() {
         }, [tableConfig]);
 
     return (
-        <div className="ml-4">
+        <div>
             <div className="mb-6 flex items-start justify-between">
                 <div>
                     <h1 className="text-2xl font-semibold">

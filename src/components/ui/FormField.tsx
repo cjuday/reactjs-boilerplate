@@ -21,52 +21,58 @@ export default function FormField({ id, label, registration, error, type = 'text
 
     return (
         <div className="space-y-2">
-            <label htmlFor={id} className="block text-sm font-medium text-foreground">
-                {label}{' '}{required && (<span className="ml-1 text-danger">*</span>)} 
-            </label>
+            <div className="grid grid-cols-12 gap-4 items-center">
+                <div className="col-span-3">
+                    <label htmlFor={id} className="block text-sm font-medium text-foreground">
+                        {label}{' '}{required && (<span className="ml-1 text-danger">*</span>)} 
+                    </label>
+                </div>
 
-            <Input
-                id={id}
-                type={
-                isPassword
-                    ? showPassword
-                    ? 'text'
-                    : 'password'
-                    : type
-                }
-                placeholder={placeholder}
-                autoComplete={autoComplete}
-                disabled={disabled}
-                aria-invalid={!!error}
-                className={error ? 'border-danger focus:border-danger focus:ring-danger/20' : ''}
-                rightAdornment={
-                isPassword && (
-                    <button
-                    type="button"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="flex h-full items-center text-muted transition-colors hover:text-foreground"
-                    aria-label={
-                        showPassword
-                        ? 'Hide password'
-                        : 'Show password'
-                    }
-                    >
-                    {showPassword ? (
-                        <EyeOff size={18} />
-                    ) : (
-                        <Eye size={18} />
+                <div className="col-span-9">
+                    <Input
+                        id={id}
+                        type={
+                        isPassword
+                            ? showPassword
+                            ? 'text'
+                            : 'password'
+                            : type
+                        }
+                        placeholder={placeholder}
+                        autoComplete={autoComplete}
+                        disabled={disabled}
+                        aria-invalid={!!error}
+                        className={error ? 'border-danger focus:border-danger focus:ring-danger/20' : ''}
+                        rightAdornment={
+                        isPassword && (
+                            <button
+                            type="button"
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            className="flex h-full items-center text-muted transition-colors hover:text-foreground"
+                            aria-label={
+                                showPassword
+                                ? 'Hide password'
+                                : 'Show password'
+                            }
+                            >
+                            {showPassword ? (
+                                <EyeOff size={18} />
+                            ) : (
+                                <Eye size={18} />
+                            )}
+                            </button>
+                        )
+                        }
+                        {...registration}
+                    />
+
+                    {error && (
+                        <p className="text-sm text-danger">
+                        {error}
+                        </p>
                     )}
-                    </button>
-                )
-                }
-                {...registration}
-            />
-
-            {error && (
-                <p className="text-sm text-danger">
-                {error}
-                </p>
-            )}
+                </div>
+            </div>
         </div>
     );
 }

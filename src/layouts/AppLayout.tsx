@@ -91,7 +91,7 @@ export default function AppLayout() {
                             }
                         />
                     </div>
-                    <main className="min-w-0 flex-1 overflow-y-auto p-5 lg:p-6">
+                    <main className="min-w-0 flex-1 overflow-y-auto p-5 lg:p-2 mt-3">
                         <Outlet />
                     </main>
                 </div>

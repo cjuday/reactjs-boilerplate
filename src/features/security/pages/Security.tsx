@@ -11,9 +11,9 @@ export default function SecurityPage() {
                 <p className="mt-1 text-sm text-muted">
                     Manage your account security settings.
                 </p>
+                <hr className='border-border mt-1'/>
             </div>
-
-            <div className="max-w-2xl">
+            <div className="mx-auto w-full max-w-2xl">
                 <ChangePasswordForm />
             </div>
         </div>

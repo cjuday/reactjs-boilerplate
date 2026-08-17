@@ -35,7 +35,7 @@ export default function Sidebar({ open, collapsed, onClose, onCollapse }: Sideba
                 <button
                     type="button"
                     onClick={onCollapse}
-                    className="absolute -right-4 top-6 z-50 hidden h-8 w-8 items-center justify-center rounded-full bg-surface shadow-control transition-all duration-200 hover:scale-110 hover:bg-surface-hover active:scale-95 lg:flex"
+                    className="absolute -right-4 -top-2 z-50 hidden h-8 w-8 items-center justify-center rounded-full bg-surface shadow-control transition-all duration-200 hover:scale-110 hover:bg-surface-hover active:scale-95 lg:flex"
                 >
                     {collapsed ? (
                         <ChevronRight size={16} />
@@ -56,7 +56,7 @@ export default function Sidebar({ open, collapsed, onClose, onCollapse }: Sideba
                 )}
                 {/* Navigation */}
                  <nav
-                    className="flex-1 space-y-1 p-4"
+                    className="flex-1 space-y-1 py-4 px-1"
                 >
                     {sidebarMenu.map((item) => (
                         <SidebarNode

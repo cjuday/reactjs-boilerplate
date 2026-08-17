@@ -46,7 +46,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
     }, [active]);
 
     const groupClasses = cn(
-        'group relative flex h-10 w-full items-center rounded-control text-left text-sm font-medium transition-all duration-200',
+        'group relative flex h-8 w-full items-center rounded-control text-left text-sm font-medium transition-all duration-200',
         highlighted ? 'bg-primary-soft text-primary' : 'text-foreground hover:bg-surface-hover',
     );
 
@@ -126,7 +126,7 @@ export default function SidebarNode({ item, collapsed, level = 0, isFlyout = fal
                     onClick={handleNavigate}
                     className={({ isActive }) =>
                         cn(
-                            'group relative flex h-10 items-center rounded-control text-sm font-medium transition-all duration-200',
+                            'group relative flex h-8 items-center rounded-control text-sm font-medium transition-all duration-200',
                             isActive ? 'bg-primary-soft text-primary' : 'text-foreground hover:bg-surface-hover',
                         )
                     }

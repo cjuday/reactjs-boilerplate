@@ -57,7 +57,7 @@ export default function UserCreate() {
     };
 
     return (
-        <div className="ml-4">
+        <div>
             <div className="mb-6">
                 <h1 className="text-2xl font-semibold text-foreground">
                     Create User

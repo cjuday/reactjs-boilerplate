@@ -31,8 +31,10 @@ export default function ChangePasswordForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="rounded-card bg-surface p-6 shadow-card space-y-5"
+            className="rounded-card bg-surface p-5 shadow-card space-y-5"
         >
+            <span className="text-arctic-blue-heavy text-xl leading-none">Change Password</span>
+            <hr className='mt-1 border-border'/>
             <FormField
                 label="Current Password"
                 required
@@ -60,13 +62,12 @@ export default function ChangePasswordForm() {
                 error={errors.confirmPassword?.message}
             />
 
-            <div className="flex justify-end">
-                <Button
-                    type="submit"
-                    loading={isLoading}
-                >
-                    Change Password
+            <div className="flex gap-2 pt-5">
+                <Button size='xs' variant='danger' className='flex-1'>Cancel</Button>
+                <Button type="submit" loading={isLoading} size='xs' className='flex-1'>
+                    Update
                 </Button>
+                
             </div>
         </form>
     );
