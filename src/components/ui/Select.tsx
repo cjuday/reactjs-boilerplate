@@ -183,7 +183,7 @@ export default function Select({
         <ChevronDown
           size={18}
           className={[
-            "shrink-0 text-muted",
+            "shrink-0 text-muted right-3",
             "transition-transform",
             open ? "rotate-180" : "",
           ].join(" ")}
