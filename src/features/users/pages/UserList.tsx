@@ -8,9 +8,11 @@ import { useDeleteUserMutation, useExportUsersMutation, useGetUsersQuery, useGet
 import type { DataTableRowAction } from '@/components/ui/DataTable/types';
 import { UserPlus } from 'lucide-react';
 import PageHeader from '@/components/layouts/PageHeader';
+import { usePermissions } from '@/features/auth/hooks/use-permissions';
 
 export default function UserList() {
     const navigate = useNavigate();
+    const { hasPermission } = usePermissions();
     const [userToDelete, setUserToDelete] = useState<User | null>(null);
     const [query, setQuery] = useState<DataTableQuery>({
         page: 1,
@@ -53,20 +55,31 @@ export default function UserList() {
         }
     };
 
-    const rowActions: DataTableRowAction<User>[] = [
-        {
-            label: 'Edit',
-            icon: <Pencil size={17} />,
-            className: 'text-custom-gray hover:text-primary',
-            onClick: (user) => { navigate(`/users/${user.id}/edit`); }
-        },
-        {
-            label: 'Delete',
-            icon: <Trash2 size={17} />,
-            className: 'text-custom-gray hover:text-danger',
-            onClick: handleDelete
-        },
-    ];
+    const rowActions = useMemo<DataTableRowAction<User>[]>(() => {
+        const actions: DataTableRowAction<User>[] = [];
+
+        if (hasPermission('users', 'update')) {
+            actions.push({
+                label: 'Edit',
+                icon: <Pencil size={17} />,
+                className: 'text-custom-gray hover:text-primary',
+                onClick: (user) => {
+                    navigate(`/users/${user.id}/edit`);
+                },
+            });
+        }
+
+        if (hasPermission('users', 'delete')) {
+            actions.push({
+                label: 'Delete',
+                icon: <Trash2 size={17} />,
+                className: 'text-custom-gray hover:text-danger',
+                onClick: handleDelete,
+            });
+        }
+
+        return actions;
+    }, [hasPermission, navigate]);
 
     const columns =
         useMemo<DataTableColumn<User>[]>(() => {
@@ -157,7 +170,7 @@ export default function UserList() {
             <PageHeader
                 title="Users"
                 subTitle="Manage system users."
-                button={true}
+                button={hasPermission('users', 'create') ? true : false}
                 buttonText="Create User"
                 icon={<UserPlus size={17} />}
                 onClick='/users/create'
