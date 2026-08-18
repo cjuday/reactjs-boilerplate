@@ -40,11 +40,10 @@ export interface DataTableQuery {
 }
 
 export interface DataTableRowAction<T> {
-    label: string;
-    icon?: ReactNode;
-    onClick: (row: T) => void;
-    visible?: (row: T) => boolean;
-    disabled?: (row: T) => boolean;
-    danger?: boolean;
-    
+  label: string;
+  icon: React.ReactNode;
+  onClick: (row: T) => void;
+  visible?: (row: T) => boolean;
+  disabled?: (row: T) => boolean;
+  className?: string;
 }

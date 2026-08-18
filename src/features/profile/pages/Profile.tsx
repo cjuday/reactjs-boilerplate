@@ -1,19 +1,15 @@
+import PageHeader from '@/components/layouts/PageHeader';
 import ProfileForm from '../forms/ProfileForm';
 
 export default function ProfilePage() {
     return (
-        <div className="ml-4 max-w-2xl">
+        <div>
             <div className="mb-6">
-                <h1 className="text-2xl font-semibold">
-                    Profile
-                </h1>
-
-                <p className="mt-1 text-sm text-muted">
-                    Update your personal information.
-                </p>
+                <PageHeader title="Profile" subTitle="Update your personal information."/>
             </div>
-
-            <ProfileForm />
+            <div className="mx-auto w-full max-w-2xl">
+                <ProfileForm />
+            </div>
         </div>
     );
 }

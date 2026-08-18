@@ -1,5 +1,6 @@
 import type { DataTableRowAction } from "./types";
-import React from 'react';
+import React from "react";
+import { cn } from "@/shared/utils/cn";
 
 interface DataTableRowActionsProps<T> {
   row: T;
@@ -31,13 +32,11 @@ export default function DataTableRowActions<T>({
               type="button"
               disabled={disabled}
               onClick={() => action.onClick(row)}
-              className={`flex h-8 w-8 items-center justify-center rounded-control text-muted transition-colors ${
-                disabled
-                  ? "cursor-not-allowed opacity-40"
-                  : action.danger
-                    ? "hover:bg-surface-hover hover:text-danger"
-                    : "hover:bg-surface-hover hover:text-foreground"
-              }`}
+              className={cn(
+                "flex h-8 w-8 items-center justify-center rounded-control transition-colors",
+                disabled && "cursor-not-allowed opacity-40",
+                action.className
+              )}
               title={action.label}
               aria-label={action.label}
             >

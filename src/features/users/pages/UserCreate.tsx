@@ -4,22 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { getErrorMessage } from '@/shared/utils/GetErrorMessage';
 import { useCreateUserMutation } from '../api/userApi';
-
 import UserForm from '../forms/UserForm';
-
-import {
-    userCreateSchema,
-    type UserCreateFormValues,
-} from '../schemas/user-create.schema';
+import { userCreateSchema, type UserCreateFormValues } from '../schemas/user-create.schema';
+import PageHeader from '@/components/layouts/PageHeader';
 
 export default function UserCreate() {
     const navigate = useNavigate();
-
-    const [
-        createUser,
-        { isLoading: createLoading },
-    ] = useCreateUserMutation();
-
+    const [ createUser, { isLoading: createLoading }] = useCreateUserMutation();
     const form = useForm<UserCreateFormValues>({
         resolver: zodResolver(userCreateSchema),
         defaultValues: {
@@ -32,7 +23,6 @@ export default function UserCreate() {
             confirmPassword: '',
         },
     });
-
     const { handleSubmit } = form;
 
     const onSubmit = async (values: UserCreateFormValues) => {
@@ -49,7 +39,6 @@ export default function UserCreate() {
             }).unwrap();
 
             toast.success(response.message);
-
             navigate('/users');
         } catch (error) {
             toast.error(getErrorMessage(error));
@@ -58,22 +47,11 @@ export default function UserCreate() {
 
     return (
         <div>
-            <div className="mb-2">
-                <h1 className="text-2xl font-semibold text-foreground">
-                    Create User
-                </h1>
-
-                <p className="mt-1 text-sm text-muted">
-                    Create a new system user.
-                </p>
-                <hr className='border-border mt-1'/>
-            </div>
+            <PageHeader title="Create User" subTitle="Create a new system user."/>
 
             <div className="mx-auto w-full max-w-6xl">
                 <FormProvider {...form}>
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <UserForm
                             mode="create"
                             loading={createLoading}

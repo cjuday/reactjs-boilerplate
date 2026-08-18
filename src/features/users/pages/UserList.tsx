@@ -2,119 +2,54 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pencil, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-
-import {
-    DataTable,
-    type DataTableColumn,
-    type DataTableQuery,
-} from '@/components/ui/DataTable';
-
+import { DataTable, type DataTableColumn, type DataTableQuery } from '@/components/ui/DataTable';
 import ConfirmDialog from '@/components/ui/Modal/ConfirmDialog';
-
-import {
-    useDeleteUserMutation,
-    useExportUsersMutation,
-    useGetUsersQuery,
-    useGetUsersTableConfigQuery,
-    type User,
-} from '../api/userApi';
-
+import { useDeleteUserMutation, useExportUsersMutation, useGetUsersQuery, useGetUsersTableConfigQuery, type User } from '../api/userApi';
 import type { DataTableRowAction } from '@/components/ui/DataTable/types';
-import { Button } from '@/components/ui';
 import { UserPlus } from 'lucide-react';
+import PageHeader from '@/components/layouts/PageHeader';
 
 export default function UserList() {
     const navigate = useNavigate();
-
-    const [userToDelete, setUserToDelete] =
-        useState<User | null>(null);
-
-    const [query, setQuery] =
-        useState<DataTableQuery>({
-            page: 1,
-            limit: 10,
-            search: '',
-            filters: {},
-        });
-
-    const {
-        data: usersResponse,
-        isLoading: usersLoading,
-    } = useGetUsersQuery(query);
-
-    const {
-        data: tableConfig,
-        isLoading: configLoading,
-    } = useGetUsersTableConfigQuery();
-
-    const [
-        deleteUser,
-        { isLoading: deleteLoading },
-    ] = useDeleteUserMutation();
-
-    const [
-        exportUsers,
-        { isLoading: exportLoading },
-    ] = useExportUsersMutation();
-
-    const handleDelete = (user: User) => {
-        setUserToDelete(user);
-    };
+    const [userToDelete, setUserToDelete] = useState<User | null>(null);
+    const [query, setQuery] = useState<DataTableQuery>({
+        page: 1,
+        limit: 10,
+        search: '',
+        filters: {},
+    });
+    const { data: usersResponse, isLoading: usersLoading } = useGetUsersQuery(query);
+    const { data: tableConfig, isLoading: configLoading } = useGetUsersTableConfigQuery();
+    const [ deleteUser, { isLoading: deleteLoading } ] = useDeleteUserMutation();
+    const [ exportUsers, { isLoading: exportLoading } ] = useExportUsersMutation();
+    const handleDelete = (user: User) => { setUserToDelete(user); };
 
     const confirmDelete = async () => {
-        if (!userToDelete) {
-            return;
-        }
+        if (!userToDelete) return;
 
         try {
-            const result = await deleteUser(
-                userToDelete.id,
-            ).unwrap();
-
+            const result = await deleteUser(userToDelete.id).unwrap();
             toast.success(result.message);
         } catch (error) {
-            toast.error(
-                'Failed to delete user.',
-            );
+            toast.error('Failed to delete user.');
         } finally {
             setUserToDelete(null);
         }
     };
 
-    const handleExport = async (
-        exportQuery: DataTableQuery,
-    ) => {
+    const handleExport = async (exportQuery: DataTableQuery) => {
         try {
-            const url = await exportUsers(
-                exportQuery,
-            ).unwrap();
-
-            const timestamp = new Date()
-                .toISOString()
-                .replace('T', '_')
-                .replace(/:/g, '-')
-                .replace(/\..+/, '');
-
-            const link =
-                document.createElement('a');
-
+            const url = await exportUsers(exportQuery).unwrap();
+            const timestamp = new Date().toISOString().replace('T', '_').replace(/:/g, '-').replace(/\..+/, '');
+            const link = document.createElement('a');
             link.href = url;
-            link.download =
-                `userList_${timestamp}.xlsx`;
-
+            link.download = `userList_${timestamp}.xlsx`;
             document.body.appendChild(link);
-
             link.click();
-
             link.remove();
-
-            setTimeout(() => {
-                URL.revokeObjectURL(url);
-            }, 1000);
+            setTimeout(() => { URL.revokeObjectURL(url); }, 1000);
         } catch (error) {
-            toast.error(
-                'Failed to export users.',
-            );
+            toast.error('Failed to export users.');
         }
     };
 
@@ -122,97 +57,54 @@ export default function UserList() {
         {
             label: 'Edit',
             icon: <Pencil size={17} />,
-            onClick: (user) => {
-                navigate(
-                    `/users/${user.id}/edit`,
-                );
-            },
+            className: 'text-custom-gray hover:text-primary',
+            onClick: (user) => { navigate(`/users/${user.id}/edit`); }
         },
         {
             label: 'Delete',
             icon: <Trash2 size={17} />,
-            danger: true,
-            onClick: handleDelete,
+            className: 'text-custom-gray hover:text-danger',
+            onClick: handleDelete
         },
     ];
 
     const columns =
         useMemo<DataTableColumn<User>[]>(() => {
-            if (!tableConfig) {
-                return [];
-            }
+            if (!tableConfig)  return [];
 
-            return tableConfig.columns.map(
-                (column) => {
+            return tableConfig.columns.map((column) => {
                     const baseColumn: DataTableColumn<User> =
                     {
-                        key: column.key as keyof User &
-                            string,
+                        key: column.key as keyof User & string,
                         label: column.label,
                         visible: column.visible,
-                        sortable:
-                            column.sortable,
-                        searchable:
-                            column.searchable,
-                        exportable:
-                            column.exportable,
-                        filter:
-                            column.filter,
+                        sortable: column.sortable,
+                        searchable: column.searchable,
+                        exportable: column.exportable,
+                        filter: column.filter,
                     };
 
-                    /*
-                     * Email verification status
-                     */
-                    if (
-                        column.key ===
-                        'isEmailVerified'
-                    ) {
-                        baseColumn.render = (
-                            value,
-                        ) => (
-                            <span
-                                className={
-                                    value
-                                        ? 'text-bottle-green'
-                                        : 'text-mahogany-red'
-                                }
-                            >
-                                {value
-                                    ? 'Verified'
-                                    : 'Not Verified'}
+                    //Email verification status
+                    if (column.key === 'isEmailVerified') {
+                        baseColumn.render = (value) => (
+                            <span className={ value ? 'text-bottle-green' : 'text-mahogany-red'}>
+                                {value ? 'Verified' : 'Not Verified'}
                             </span>
                         );
                     }
 
-                    /*
-                     * Role
-                     */
-                    if (
-                        column.key === 'role'
-                    ) {
-                        baseColumn.render = (
-                            value,
-                        ) => (
+                    //Role
+                    if (column.key === 'role') {
+                        baseColumn.render = (value) => (
                             <span>
-                                {value
-                                    ? (
-                                        value as User['role']
-                                    )?.name
-                                    : '—'}
+                                {value ? ( value as User['role'])?.name : '—'}
                             </span>
                         );
                     }
 
-                    /*
-                     * Email verified date
-                     */
-                    if (
-                        column.key ===
-                        'emailVerifiedAt'
-                    ) {
-                        baseColumn.render = (
-                            value,
-                        ) => {
+                    // Email verified date
+                    if (column.key === 'emailVerifiedAt') {
+                        baseColumn.render = (value) => {
                             if (!value) {
                                 return (
                                     <span className="text-muted">
@@ -221,78 +113,37 @@ export default function UserList() {
                                 );
                             }
 
-                            return new Date(
-                                String(value),
-                            )
-                                .toLocaleDateString(
-                                    'en-GB',
+                            return new Date(String(value)).toLocaleDateString('en-GB',
                                     {
                                         day: '2-digit',
                                         month: 'short',
                                         year: 'numeric',
                                     },
-                                )
-                                .replace(
-                                    / /g,
-                                    '-',
-                                );
+                                ).replace(/ /g, '-');
                         };
                     }
 
-                    /*
-                     * Activity status
-                     */
-                    if (
-                        column.key ===
-                        'isActive'
-                    ) {
-                        baseColumn.render = (
-                            value,
-                        ) => (
-                            <span
-                                className={
-                                    value
-                                        ? 'text-bottle-green'
-                                        : 'text-mahogany-red'
-                                }
-                            >
-                                {value
-                                    ? 'Active'
-                                    : 'Inactive'}
+                    // Activity status
+                    if (column.key === 'isActive') {
+                        baseColumn.render = (value) => (
+                            <span className={value ? 'text-bottle-green' : 'text-mahogany-red'}>
+                                {value ? 'Active' : 'Inactive'}
                             </span>
                         );
                     }
 
-                    /*
-                     * Registered date
-                     */
-                    if (
-                        column.key ===
-                        'createdAt'
-                    ) {
-                        baseColumn.render = (
-                            value,
-                        ) => {
-                            const date =
-                                new Date(
-                                    String(
-                                        value,
-                                    ),
-                                );
+                    //Registered date
+                    if (column.key === 'createdAt') {
+                        baseColumn.render = (value) => {
+                            const date = new Date(String(value));
 
-                            return date
-                                .toLocaleDateString(
-                                    'en-GB',
+                            return date.toLocaleDateString('en-GB',
                                     {
                                         day: '2-digit',
                                         month: 'short',
                                         year: 'numeric',
                                     },
-                                )
-                                .replace(
-                                    / /g,
-                                    '-',
-                                );
+                                ).replace(/ /g, '-');
                         };
                     }
 
@@ -303,56 +154,31 @@ export default function UserList() {
 
     return (
         <div>
-            <div className="mb-6 flex items-center justify-between">
-                <div>
-                    <h1 className="text-2xl font-semibold">
-                        Users
-                    </h1>
-
-                    <p className="mt-1 text-sm text-muted">
-                        Manage system users.
-                    </p>
-                </div>
-
-                <Button
-                    type="button"
-                    onClick={() => navigate('/users/create')}
-                    size="xs"
-                >
-                    <UserPlus size={17} />
-                    Create User
-                </Button>
-            </div>
+            <PageHeader
+                title="Users"
+                subTitle="Manage system users."
+                button={true}
+                buttonText="Create User"
+                icon={<UserPlus size={17} />}
+                onClick='/users/create'
+            />
 
             <DataTable
                 columns={columns}
-                data={
-                    usersResponse?.data ?? []
-                }
-                loading={
-                    usersLoading ||
-                    configLoading
-                }
+                data={usersResponse?.data ?? []}
+                loading={usersLoading || configLoading}
                 storageKey="users-table-columns"
                 showSerialNumber
                 onQueryChange={setQuery}
                 onExport={handleExport}
                 exportLoading={exportLoading}
-                total={
-                    usersResponse?.meta.total ??
-                    0
-                }
-                totalPages={
-                    usersResponse?.meta
-                        .totalPages ?? 1
-                }
+                total={usersResponse?.meta.total ?? 0}
+                totalPages={usersResponse?.meta.totalPages ?? 1}
                 rowActions={rowActions}
             />
 
             <ConfirmDialog
-                open={
-                    userToDelete !== null
-                }
+                open={userToDelete !== null}
                 title="Delete user?"
                 message={
                     <>

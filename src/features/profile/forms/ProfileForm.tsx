@@ -12,6 +12,7 @@ import {
     profileSchema,
     type ProfileFormValues,
 } from '../schemas/profile.schema';
+import CardHeader from '@/components/layouts/CardHeader';
 
 export default function ProfileForm() {
     const user = useAppSelector(
@@ -68,10 +69,8 @@ export default function ProfileForm() {
     }
 
     return (
-        <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="rounded-card bg-surface p-6 shadow-card space-y-5"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="rounded-card bg-surface p-6 shadow-card space-y-5">
+            <CardHeader title="Update Profile"/>
             <FormField
                 label="Full Name"
                 required
@@ -100,6 +99,7 @@ export default function ProfileForm() {
                 <Button
                     type="submit"
                     loading={isLoading}
+                    size="xs"
                 >
                     Save Changes
                 </Button>

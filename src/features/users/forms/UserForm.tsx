@@ -2,6 +2,7 @@ import { Button, FormField, ReadonlyField, Select } from "@/components/ui";
 import { Controller, useFormContext } from "react-hook-form";
 import type { UserFormValues } from "../schemas/user-form.schema";
 import { useGetRoleOptionsQuery } from "@/features/roles/api/rolesApi";
+import CardHeader from "@/components/layouts/CardHeader";
 
 interface UserFormProps {
   mode: "create" | "edit";
@@ -45,10 +46,8 @@ export default function UserForm({
 
   return (
     <div className="space-y-5 rounded-card bg-surface p-6 shadow-card">
-      <span className="text-arctic-blue-heavy text-xl leading-none">
-        {mode=='edit' ? 'Edit User' : 'New User'}
-      </span>
-      <hr className="mt-1 pb-2 border-border" />
+      <CardHeader title={mode=='edit' ? 'Edit User' : 'New User'}/>
+      
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {/* Full Name */}
         <FormField
@@ -58,12 +57,15 @@ export default function UserForm({
           autoComplete="name"
           registration={register("name")}
           error={errors.name?.message}
-          labelPosition="overlap"
         />
 
         {/* Email */}
         {mode === "edit" ? (
-          <ReadonlyField label="Email" value={email ?? ""} />
+          <ReadonlyField 
+            label="Email" 
+            value={email ?? ""} 
+            required={true}
+          />
         ) : (
           <FormField
             label="Email"
@@ -73,7 +75,6 @@ export default function UserForm({
             autoComplete="email"
             registration={register("email")}
             error={errors.email?.message}
-            labelPosition="overlap"
           />
         )}
 
@@ -85,7 +86,6 @@ export default function UserForm({
           autoComplete="tel"
           registration={register("phoneNumber")}
           error={errors.phoneNumber?.message}
-          labelPosition="overlap"
         />
 
         {/* Role */}
@@ -119,7 +119,7 @@ export default function UserForm({
             autoComplete="new-password"
             registration={register("password")}
             error={errors.password?.message}
-            labelPosition="overlap"
+            required={ mode=="edit" ? false : true }
           />
         </div>
 
@@ -131,7 +131,7 @@ export default function UserForm({
           autoComplete="new-password"
           registration={register("confirmPassword")}
           error={errors.confirmPassword?.message}
-          labelPosition="overlap"
+          required={ mode=="edit" ? false : true }
         />
 
         {/* Account Status */}
