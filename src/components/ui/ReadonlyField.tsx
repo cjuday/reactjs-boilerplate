@@ -2,14 +2,14 @@ interface ReadonlyFieldProps {
     label: string;
     value: string;
     helperText?: string;
-    labelPosition?: 'left' | 'top';
+    labelPosition?: 'left' | 'top' | 'overlap';
 }
 
 export default function ReadonlyField({
     label,
     value,
     helperText,
-    labelPosition = 'left',
+    labelPosition = 'overlap',
 }: ReadonlyFieldProps) {
     const labelElement = (
         <label className="block text-sm font-medium text-foreground">
@@ -19,7 +19,7 @@ export default function ReadonlyField({
 
     const fieldElement = (
         <>
-            <div className="w-full cursor-not-allowed rounded-control border border-border bg-surface-hover px-3 py-2 text-sm text-muted">
+            <div className="w-full cursor-not-allowed rounded-none border-0 border-b border-border bg-surface px-0 py-2 text-sm text-readonly-gray">
                 {value}
             </div>
 
@@ -30,6 +30,22 @@ export default function ReadonlyField({
             )}
         </>
     );
+
+    if (labelPosition === 'overlap') {
+        return (
+            <div className="space-y-2">
+                <div className="relative">
+                    {fieldElement}
+
+                    <label
+                        className="pointer-events-none absolute -top-5 left-0 z-10 bg-surface pr-1 text-base text-custom-blue"
+                    >
+                        {label}
+                    </label>
+                </div>
+            </div>
+        );
+    }
 
     if (labelPosition === 'top') {
         return (

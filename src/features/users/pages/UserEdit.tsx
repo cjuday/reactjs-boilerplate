@@ -153,19 +153,22 @@ export default function UserEdit() {
                 <p className="mt-1 text-sm text-muted">
                     Update user information.
                 </p>
+                <hr className='border-border mt-1'/>
             </div>
 
-            <FormProvider {...form}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <UserForm
-                        mode="edit"
-                        email={user.email}
-                        loading={updateLoading}
-                        submitLabel="Save Changes"
-                        onCancel={() => navigate('/users')}
-                    />
-                </form>
-            </FormProvider>
+            <div className="mx-auto w-full max-w-6xl">
+                <FormProvider {...form}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <UserForm
+                            mode="edit"
+                            email={user.email}
+                            loading={updateLoading}
+                            submitLabel="Save Changes"
+                            onCancel={() => navigate('/users')}
+                        />
+                    </form>
+                </FormProvider>
+            </div>
         </div>
     );
 }

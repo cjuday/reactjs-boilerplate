@@ -58,7 +58,7 @@ export default function UserCreate() {
 
     return (
         <div>
-            <div className="mb-6">
+            <div className="mb-2">
                 <h1 className="text-2xl font-semibold text-foreground">
                     Create User
                 </h1>
@@ -66,22 +66,25 @@ export default function UserCreate() {
                 <p className="mt-1 text-sm text-muted">
                     Create a new system user.
                 </p>
+                <hr className='border-border mt-1'/>
             </div>
 
-            <FormProvider {...form}>
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                >
-                    <UserForm
-                        mode="create"
-                        loading={createLoading}
-                        submitLabel="Create User"
-                        onCancel={() =>
-                            navigate('/users')
-                        }
-                    />
-                </form>
-            </FormProvider>
+            <div className="mx-auto w-full max-w-6xl">
+                <FormProvider {...form}>
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <UserForm
+                            mode="create"
+                            loading={createLoading}
+                            submitLabel="Create User"
+                            onCancel={() =>
+                                navigate('/users')
+                            }
+                        />
+                    </form>
+                </FormProvider>
+            </div>
         </div>
     );
 }

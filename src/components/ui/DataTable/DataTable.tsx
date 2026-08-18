@@ -230,7 +230,7 @@ export default function DataTable<T extends object>({
                                     {activeColumns.map((column) => (
                                         <td
                                             key={column.key}
-                                            className="whitespace-nowrap border-r border-border px-4 py-3 text-foreground last:border-r-0"
+                                            className="whitespace-nowrap border-r border-border px-4 py-3 text-custom-gray last:border-r-0"
                                         >
                                             {column.render
                                                 ? column.render(

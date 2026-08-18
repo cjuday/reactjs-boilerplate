@@ -173,8 +173,8 @@ export default function UserList() {
                             <span
                                 className={
                                     value
-                                        ? 'text-success'
-                                        : 'text-danger'
+                                        ? 'text-bottle-green'
+                                        : 'text-mahogany-red'
                                 }
                             >
                                 {value
@@ -193,7 +193,7 @@ export default function UserList() {
                         baseColumn.render = (
                             value,
                         ) => (
-                            <span className="text-foreground">
+                            <span>
                                 {value
                                     ? (
                                         value as User['role']
@@ -252,8 +252,8 @@ export default function UserList() {
                             <span
                                 className={
                                     value
-                                        ? 'text-success'
-                                        : 'text-danger'
+                                        ? 'text-bottle-green'
+                                        : 'text-mahogany-red'
                                 }
                             >
                                 {value
